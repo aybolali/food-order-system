@@ -1,0 +1,14 @@
+domain\valueObject\PaymentStatus.class
+domain\entity\BaseEntity.class
+domain\valueObject\OrderStatus.class
+domain\exception\DomainExceptionClass.class
+domain\entity\AggregateRoot.class
+domain\valueObject\OrderApprovalStatus.class
+domain\valueObject\Money.class
+domain\valueObject\BaseId.class
+domain\valueObject\OrderId.class
+domain\valueObject\CustomerID.class
+domain\event\DomainEvents.class
+domain\valueObject\ProductID.class
+domain\event\publisher\DomainEventPublisher.class
+domain\valueObject\RestaurantID.class
