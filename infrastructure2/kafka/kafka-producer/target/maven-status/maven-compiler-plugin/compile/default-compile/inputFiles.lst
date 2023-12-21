@@ -1,4 +1,5 @@
 C:\Users\SpaceX\Desktop\microservices\food-ordering-system\infrastructure2\kafka\kafka-producer\src\main\java\com\food\ordering\system\kafka\producer\KafkaProducerConfig.java
 C:\Users\SpaceX\Desktop\microservices\food-ordering-system\infrastructure2\kafka\kafka-producer\src\main\java\com\food\ordering\system\kafka\producer\service\KafkaProducerImpl.java
+C:\Users\SpaceX\Desktop\microservices\food-ordering-system\infrastructure2\kafka\kafka-producer\src\main\java\com\food\ordering\system\kafka\producer\KafkaMessageHelper.java
 C:\Users\SpaceX\Desktop\microservices\food-ordering-system\infrastructure2\kafka\kafka-producer\src\main\java\com\food\ordering\system\kafka\producer\exception\KafkaProducerException.java
 C:\Users\SpaceX\Desktop\microservices\food-ordering-system\infrastructure2\kafka\kafka-producer\src\main\java\com\food\ordering\system\kafka\producer\service\KafkaProducer.java

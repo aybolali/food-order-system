@@ -5,16 +5,17 @@ import com.food.ordering.system.order.service.domain.entity.Restaurant;
 import com.food.ordering.system.order.service.domain.event.orderCancelledEvent;
 import com.food.ordering.system.order.service.domain.event.orderCreatedEvent;
 import com.food.ordering.system.order.service.domain.event.orderPaidEvent;
+import domain.event.publisher.DomainEventPublisher;
 
 import java.util.List;
 
 public interface OrderDomainService {
 
-    orderCreatedEvent validateAndInitiateOrder(Order order, Restaurant restaurant);
+    orderCreatedEvent validateAndInitiateOrder(Order order, Restaurant restaurant, DomainEventPublisher<orderCreatedEvent> orderCreatedEventDomainEventPublisher);
 
-    orderCancelledEvent cancelOrderPayment(Order order, List<String> failureMessages);
+    orderCancelledEvent cancelOrderPayment(Order order, List<String> failureMessages, DomainEventPublisher<orderCancelledEvent> orderCancelledEventDomainEventPublisher);
 
-    orderPaidEvent payOrder(Order order);
+    orderPaidEvent payOrder(Order order, DomainEventPublisher<orderPaidEvent> orderPaidEventDomainEventPublisher);
 
     void approveOrder(Order order);
 

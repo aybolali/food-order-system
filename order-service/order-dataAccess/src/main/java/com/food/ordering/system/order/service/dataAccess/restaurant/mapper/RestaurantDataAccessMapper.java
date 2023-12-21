@@ -1,13 +1,13 @@
 package com.food.ordering.system.order.service.dataAccess.restaurant.mapper;
 
-import com.food.ordering.system.order.service.dataAccess.restaurant.entity.RestaurantEntity;
-import com.food.ordering.system.order.service.dataAccess.restaurant.exception.RestaurantDataAccessException;
 import com.food.ordering.system.order.service.domain.entity.Product;
 import com.food.ordering.system.order.service.domain.entity.Restaurant;
 import domain.valueObject.Money;
 import domain.valueObject.ProductID;
 import domain.valueObject.RestaurantID;
 import org.springframework.stereotype.Component;
+import common.dataAccess.restaurant.entity.RestaurantEntity;
+import common.dataAccess.restaurant.exception.RestaurantDataAccessException;
 
 import java.util.List;
 import java.util.UUID;
@@ -28,7 +28,7 @@ public class RestaurantDataAccessMapper {
         return Restaurant.builder()
                 .RestaurantId(new RestaurantID(restaurantEntity.getRestaurantId()))
                 .products(productsList)
-                .active(restaurantEntity.isRestaurantActive())
+                .active(restaurantEntity.getRestaurantActive())
                 .build();
     }
 

@@ -8,14 +8,15 @@
         <module>order-service</module>
         <module>common</module>
         <module>infrastructure2</module>
-        <module>common/common-application</module>
         <module>customer-service</module>
+        <module>payment-service</module>
+        <module>restaurant-service</module>
     </modules>
 
     <parent>
         <artifactId>spring-boot-starter-parent</artifactId>
         <groupId>org.springframework.boot</groupId>
-        <version>3.1.3</version>
+        <version>3.1.5</version>
         <relativePath/>
     </parent>
 
@@ -27,11 +28,11 @@
 
 
     <properties>
-        <maven-compiler-plugin.version>3.9.0</maven-compiler-plugin.version>
-        <mockit.version>4.3.1</mockit.version>
-        <spring-kafka.version>2.8.2</spring-kafka.version>
-        <kafka-avro-serializer.version>7.0.1</kafka-avro-serializer.version>
-        <avro.version>1.11.1</avro.version>
+        <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
+        <mockit.version>5.7.0</mockit.version>
+        <spring-kafka.version>3.0.12</spring-kafka.version>
+        <kafka-avro-serializer.version>7.5.1</kafka-avro-serializer.version>
+        <avro.version>1.11.3</avro.version>
     </properties>
 
     <dependencyManagement>
@@ -44,6 +45,26 @@
             <dependency>
                 <groupId>com.food.ordering.system</groupId>
                 <artifactId>order-application-service</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.food.ordering.system</groupId>
+                <artifactId>common-dataacess</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.food.ordering.system</groupId>
+                <artifactId>restaurant-application-service</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.food.ordering.system</groupId>
+                <artifactId>restaurant-dataAccess</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.food.ordering.system</groupId>
+                <artifactId>restaurant-messaging</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -97,6 +118,31 @@
                 <version>3.1.0</version>
                 <scope>test</scope>
             </dependency>
+            <dependency>
+                <groupId>com.food.ordering.system</groupId>
+                <artifactId>payment-domain-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.food.ordering.system</groupId>
+                <artifactId>payment-application-service2</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.food.ordering.system</groupId>
+                <artifactId>payment-dataAccess</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.food.ordering.system</groupId>
+                <artifactId>payment-messaging</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.food.ordering.system</groupId>
+                <artifactId>restaurant-domain-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -119,7 +165,7 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin.version}</version>
                 <configuration>
-                    <release>18</release>
+                    <release>17</release>
                 </configuration>
             </plugin>
         </plugins>

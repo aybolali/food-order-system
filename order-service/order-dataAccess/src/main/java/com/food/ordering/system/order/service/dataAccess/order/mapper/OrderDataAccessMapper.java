@@ -22,11 +22,11 @@ public class OrderDataAccessMapper  {
     public OrderEntity orderToOrderEntity(Order order) {
         OrderEntity orderEntity = OrderEntity.builder()
                 .id(order.getId().getValue())
-                .restaurantId(order.getRestaurantID().getValue())
                 .customerId(order.getCustomerID().getValue())
+                .restaurantId(order.getRestaurantID().getValue())
                 .trackingId(order.getTrackingId().getValue())
-                .price(order.getPrice().getAmount())
                 .address(deliveryAddressToAddressEntity(order.getDeliveryAddress()))
+                .price(order.getPrice().getAmount())
                 .items(orderItemsToOrderItemEntities(order.getItems()))
                 .orderStatus(order.getOrderStatus())
                 .failureMessages(order.getFailureMessages() != null ?
@@ -41,12 +41,12 @@ public class OrderDataAccessMapper  {
     public Order orderEntityToOrder(OrderEntity orderEntity){
         return Order.builder()
                 .orderId(new OrderId(orderEntity.getId()))
-                .restaurantID(new RestaurantID(orderEntity.getRestaurantId()))
                 .customerID(new CustomerID(orderEntity.getCustomerId()))
-                .trackingId(new TrackingId(orderEntity.getTrackingId()))
-                .price(new Money(orderEntity.getPrice()))
+                .restaurantID(new RestaurantID(orderEntity.getRestaurantId()))
                 .deliveryAddress(addressEntityToDeliveryAddress(orderEntity.getAddress()))
+                .price(new Money(orderEntity.getPrice()))
                 .items(orderItemEntitiesToOrderItem(orderEntity.getItems()))
+                .trackingId(new TrackingId(orderEntity.getTrackingId()))
                 .orderStatus(orderEntity.getOrderStatus())
                 .failureMessages(orderEntity.getFailureMessages().isEmpty() ? new ArrayList<>() :
                         new ArrayList<>(Arrays.asList(orderEntity.getFailureMessages()

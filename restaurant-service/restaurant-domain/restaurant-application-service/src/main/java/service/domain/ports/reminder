@@ -1,0 +1,2 @@
+input ports will be implemented in the application service, (receive)
+output ports in the infrastructure modules like in dataAccess and messaging

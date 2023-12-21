@@ -16,5 +16,5 @@ import java.util.UUID;
 @Entity
 public class CustomerEntity {
     @Id
-    private UUID customerId;
+    private UUID id;
 }
