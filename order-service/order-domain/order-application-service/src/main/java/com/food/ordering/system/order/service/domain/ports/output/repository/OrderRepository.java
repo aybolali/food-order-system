@@ -2,6 +2,7 @@ package com.food.ordering.system.order.service.domain.ports.output.repository;
 
 import com.food.ordering.system.order.service.domain.entity.Order;
 import com.food.ordering.system.order.service.domain.valueObject.TrackingId;
+import domain.valueObject.OrderId;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
@@ -11,4 +12,5 @@ public interface OrderRepository {
 
     Optional<Order> findByTrackingId(TrackingId trackingId); //optional because I may or may not find an order with that tracking id
 
+    Optional<Order> findById(OrderId orderId);
 }
