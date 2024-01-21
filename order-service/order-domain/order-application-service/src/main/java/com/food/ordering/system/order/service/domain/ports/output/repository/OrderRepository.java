@@ -2,8 +2,7 @@ package com.food.ordering.system.order.service.domain.ports.output.repository;
 
 import com.food.ordering.system.order.service.domain.entity.Order;
 import com.food.ordering.system.order.service.domain.valueObject.TrackingId;
-import domain.valueObject.OrderId;
-import org.springframework.stereotype.Repository;
+import com.food.ordering.system.domain.valueObject.OrderId;
 
 import java.util.Optional;
 

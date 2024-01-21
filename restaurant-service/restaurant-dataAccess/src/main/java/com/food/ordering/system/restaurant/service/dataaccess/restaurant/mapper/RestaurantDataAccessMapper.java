@@ -1,16 +1,20 @@
 package com.food.ordering.system.restaurant.service.dataaccess.restaurant.mapper;
 
 
+import com.food.ordering.system.restaurant.service.domain.valueObject.OrderApprovalId;
 import com.food.ordering.system.restaurant.service.dataaccess.restaurant.entity.OrderApprovalEntity;
 
-import domain.entity.OrderApproval;
-import domain.entity.OrderDetail;
-import domain.entity.Product;
-import domain.entity.Restaurant;
-import domain.valueObject.*;
+import com.food.ordering.system.restaurant.service.domain.entity.OrderApproval;
+import com.food.ordering.system.restaurant.service.domain.entity.OrderDetail;
+import com.food.ordering.system.restaurant.service.domain.entity.Product;
+import com.food.ordering.system.restaurant.service.domain.entity.Restaurant;
+import com.food.ordering.system.domain.valueObject.Money;
+import com.food.ordering.system.domain.valueObject.OrderId;
+import com.food.ordering.system.domain.valueObject.ProductID;
+import com.food.ordering.system.domain.valueObject.RestaurantID;
 import org.springframework.stereotype.Component;
-import common.dataAccess.restaurant.entity.RestaurantEntity;
-import common.dataAccess.restaurant.exception.RestaurantDataAccessException;
+import com.food.ordering.system.common.dataAccess.restaurant.entity.RestaurantEntity;
+import com.food.ordering.system.common.dataAccess.restaurant.exception.RestaurantDataAccessException;
 
 import java.util.List;
 import java.util.UUID;

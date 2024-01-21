@@ -1,6 +1,6 @@
 package com.food.ordering.system.order.service.domain.dto.message;
 
-import domain.valueObject.OrderApprovalStatus;
+import com.food.ordering.system.domain.valueObject.OrderApprovalStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

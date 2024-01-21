@@ -2,9 +2,8 @@ package com.food.ordering.system.domain.entity;
 
 import com.food.ordering.system.domain.valueObject.CreditHistoryId;
 import com.food.ordering.system.domain.valueObject.TransactionType;
-import domain.entity.BaseEntity;
-import domain.valueObject.CustomerID;
-import domain.valueObject.Money;
+import com.food.ordering.system.domain.valueObject.CustomerID;
+import com.food.ordering.system.domain.valueObject.Money;
 
 public class CreditHistory extends BaseEntity<CreditHistoryId> {//not aggregate so they can act independently from a payment
     private final CustomerID customerID;

@@ -5,7 +5,7 @@ import com.food.ordering.system.order.service.dataAccess.order.repository.OrderJ
 import com.food.ordering.system.order.service.domain.entity.Order;
 import com.food.ordering.system.order.service.domain.ports.output.repository.OrderRepository;
 import com.food.ordering.system.order.service.domain.valueObject.TrackingId;
-import domain.valueObject.OrderId;
+import com.food.ordering.system.domain.valueObject.OrderId;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;

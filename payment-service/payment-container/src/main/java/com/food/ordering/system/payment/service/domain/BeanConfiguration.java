@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 public class BeanConfiguration {
 
     @Bean
-    public PaymentDomainService paymentDomainService(){
+    public PaymentDomainService paymentDomainService() {
         return new PaymentDomainServiceImpl();
     }
 }

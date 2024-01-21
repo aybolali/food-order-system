@@ -25,6 +25,7 @@
         <module name="kafka-producer" />
         <module name="kafka-config-data7" />
         <module name="payment-dataAccess" />
+        <module name="outbox" />
         <module name="restaurant-dataAccess" />
         <module name="order-container" />
         <module name="common-dataacess" />
@@ -67,6 +68,7 @@
       <module name="order-domain-core" options="-parameters" />
       <module name="order-messaging" options="-parameters" />
       <module name="order-service" options="" />
+      <module name="outbox" options="-parameters" />
       <module name="payment-application-core" options="-parameters" />
       <module name="payment-application-service" options="-parameters" />
       <module name="payment-application-service2" options="-parameters" />
@@ -82,7 +84,7 @@
       <module name="restaurant-domain" options="" />
       <module name="restaurant-domain-core" options="-parameters" />
       <module name="restaurant-messaging" options="-parameters" />
-      <module name="restaurant-service" options="" />
+      <module name="restaurant-service" options="-parameters" />
       <module name="saga" options="-parameters" />
     </option>
   </component>

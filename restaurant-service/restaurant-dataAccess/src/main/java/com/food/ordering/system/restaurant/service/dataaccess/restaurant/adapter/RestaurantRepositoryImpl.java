@@ -2,11 +2,11 @@ package com.food.ordering.system.restaurant.service.dataaccess.restaurant.adapte
 
 
 import com.food.ordering.system.restaurant.service.dataaccess.restaurant.mapper.RestaurantDataAccessMapper;
-import domain.entity.Restaurant;
+import com.food.ordering.system.restaurant.service.domain.entity.Restaurant;
 import org.springframework.stereotype.Component;
-import common.dataAccess.restaurant.entity.RestaurantEntity;
-import common.dataAccess.restaurant.repository.RestaurantJpaRepository;
-import service.domain.ports.output.repository.RestaurantRepository;
+import com.food.ordering.system.common.dataAccess.restaurant.entity.RestaurantEntity;
+import com.food.ordering.system.common.dataAccess.restaurant.repository.RestaurantJpaRepository;
+import com.food.ordering.system.restaurant.service.domain.ports.output.repository.RestaurantRepository;
 
 import java.util.List;
 import java.util.Optional;

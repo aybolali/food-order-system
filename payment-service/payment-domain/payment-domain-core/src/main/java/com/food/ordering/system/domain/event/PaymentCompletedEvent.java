@@ -1,20 +1,14 @@
 package com.food.ordering.system.domain.event;
 
 import com.food.ordering.system.domain.entity.Payment;
-import domain.event.publisher.DomainEventPublisher;
 
 import java.time.ZonedDateTime;
 import java.util.Collections;
 
 public class PaymentCompletedEvent extends PaymentEvents{
-    private final DomainEventPublisher<PaymentCompletedEvent> paymentCompletedEventDomainEventPublisher;
-    public PaymentCompletedEvent(Payment payment, ZonedDateTime createdAt, DomainEventPublisher<PaymentCompletedEvent> paymentCompletedEventDomainEventPublisher) {
+    public PaymentCompletedEvent(Payment payment, ZonedDateTime createdAt) {
         super(payment, createdAt, Collections.emptyList());
-        this.paymentCompletedEventDomainEventPublisher = paymentCompletedEventDomainEventPublisher;
     }
 
-    @Override
-    public void fire() {
-        paymentCompletedEventDomainEventPublisher.publish(this);
-    }
+
 }

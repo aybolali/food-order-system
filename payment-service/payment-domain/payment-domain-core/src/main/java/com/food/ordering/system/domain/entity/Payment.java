@@ -1,8 +1,10 @@
 package com.food.ordering.system.domain.entity;
 
-import com.food.ordering.system.domain.valueObject.PaymentID;
-import domain.entity.AggregateRoot;
-import domain.valueObject.*;
+import com.food.ordering.system.domain.valueObject.*;
+import com.food.ordering.system.domain.valueObject.CustomerID;
+import com.food.ordering.system.domain.valueObject.Money;
+import com.food.ordering.system.domain.valueObject.OrderId;
+import com.food.ordering.system.domain.valueObject.PaymentStatus;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;

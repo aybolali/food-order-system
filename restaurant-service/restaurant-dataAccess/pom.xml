@@ -28,5 +28,13 @@
             <groupId>com.food.ordering.system</groupId>
             <artifactId>common-dataacess</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.food.ordering.system</groupId>
+            <artifactId>outbox</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.food.ordering.system</groupId>
+            <artifactId>payment-application-service2</artifactId>
+        </dependency>
     </dependencies>
 </project>

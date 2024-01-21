@@ -1,9 +1,8 @@
 package com.food.ordering.system.domain.entity;
 
 import com.food.ordering.system.domain.valueObject.CreditEntryId;
-import domain.entity.BaseEntity;
-import domain.valueObject.CustomerID;
-import domain.valueObject.Money;
+import com.food.ordering.system.domain.valueObject.CustomerID;
+import com.food.ordering.system.domain.valueObject.Money;
 
 public class CreditEntry extends BaseEntity<CreditEntryId> {
     private final CustomerID customerID;

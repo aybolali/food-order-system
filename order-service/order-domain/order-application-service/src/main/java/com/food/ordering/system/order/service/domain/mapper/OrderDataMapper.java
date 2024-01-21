@@ -1,5 +1,6 @@
 package com.food.ordering.system.order.service.domain.mapper;
 
+import com.food.ordering.system.domain.valueObject.*;
 import com.food.ordering.system.order.service.domain.dto.create.CreateOrderCommand;
 import com.food.ordering.system.order.service.domain.dto.create.CreateOrderResponse;
 import com.food.ordering.system.order.service.domain.dto.create.OrderAddress;
@@ -8,11 +9,13 @@ import com.food.ordering.system.order.service.domain.entity.Order;
 import com.food.ordering.system.order.service.domain.entity.OrderItem;
 import com.food.ordering.system.order.service.domain.entity.Product;
 import com.food.ordering.system.order.service.domain.entity.Restaurant;
+import com.food.ordering.system.order.service.domain.event.orderCancelledEvent;
+import com.food.ordering.system.order.service.domain.event.orderCreatedEvent;
+import com.food.ordering.system.order.service.domain.event.orderPaidEvent;
+import com.food.ordering.system.order.service.domain.outbox.module.approval.OrderApprovalEventPayload;
+import com.food.ordering.system.order.service.domain.outbox.module.approval.OrderApprovalEventProduct;
+import com.food.ordering.system.order.service.domain.outbox.module.payment.OrderPaymentEventPayload;
 import com.food.ordering.system.order.service.domain.valueObject.StreetAddress;
-import domain.valueObject.CustomerID;
-import domain.valueObject.Money;
-import domain.valueObject.ProductID;
-import domain.valueObject.RestaurantID;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -24,7 +27,7 @@ public class OrderDataMapper {
 
     public Restaurant createOrderCommandToRestaurant(CreateOrderCommand createOrderCommand){
         return Restaurant.builder()
-                .RestaurantId(new RestaurantID(createOrderCommand.getRestaurantId()))
+                .restaurantId(new RestaurantID(createOrderCommand.getRestaurantId()))
                 .products(createOrderCommand.getItems().stream().map(orderItem ->
                         new Product(new ProductID(orderItem.getProductId())))
                         .collect(Collectors.toList()))
@@ -68,6 +71,21 @@ public class OrderDataMapper {
                         .build()).collect(Collectors.toList());
     }
 
+    public OrderApprovalEventPayload orderPaidEventToOrderApprovalEventPayload(orderPaidEvent orderPaidEvent){
+        return OrderApprovalEventPayload.builder()
+                .orderId(orderPaidEvent.getOrder().getId().toString())
+                .restaurantId(orderPaidEvent.getOrder().getRestaurantID().getValue().toString())
+                .restaurantOrderStatus(RestaurantOrderStatus.PAID.name())
+                .products(orderPaidEvent.getOrder().getItems().stream().map(orderItem ->
+                        OrderApprovalEventProduct.builder()
+                                .id(orderItem.getProduct().getId().getValue().toString())
+                                .quantity(orderItem.getQuantity())
+                                .build()).collect(Collectors.toList()))
+                .price(orderPaidEvent.getOrder().getPrice().getAmount())
+                .createdAt(orderPaidEvent.getCreatedAt())
+                .build();
+    }
+
     private StreetAddress orderAddressToStreetAddress(OrderAddress address) {
         return new StreetAddress(
                 UUID.randomUUID(),
@@ -75,5 +93,25 @@ public class OrderDataMapper {
                 address.getCity(),
                 address.getPostalCode()
         );
+    }
+
+    public OrderPaymentEventPayload orderCreatedEventToOrderPaymentEventPayload(orderCreatedEvent orderCreatedEvent){
+        return OrderPaymentEventPayload.builder()
+                .customerId(orderCreatedEvent.getOrder().getCustomerID().getValue().toString())
+                .orderId(orderCreatedEvent.getOrder().getId().toString())
+                .price(orderCreatedEvent.getOrder().getPrice().getAmount())
+                .createdAt(orderCreatedEvent.getCreatedAt())
+                .paymentOrderStatus(PaymentOrderStatus.PENDING.name())
+                .build();
+    }
+
+    public OrderPaymentEventPayload orderCancelledEventToOrderPaymentEventPayload(orderCancelledEvent orderCancelledEvent){
+        return OrderPaymentEventPayload.builder()
+                .customerId(orderCancelledEvent.getOrder().getCustomerID().getValue().toString())
+                .orderId(orderCancelledEvent.getOrder().getId().toString())
+                .price(orderCancelledEvent.getOrder().getPrice().getAmount())
+                .createdAt(orderCancelledEvent.getCreatedAt())
+                .paymentOrderStatus(PaymentOrderStatus.CANCELLED.name())
+                .build();
     }
 }
