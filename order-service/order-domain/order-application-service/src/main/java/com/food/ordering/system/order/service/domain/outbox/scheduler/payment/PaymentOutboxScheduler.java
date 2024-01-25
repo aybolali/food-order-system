@@ -1,6 +1,6 @@
 package com.food.ordering.system.order.service.domain.outbox.scheduler.payment;
 
-import com.food.ordering.system.order.service.domain.outbox.module.payment.OrderPaymentOutboxMessage;
+import com.food.ordering.system.order.service.domain.outbox.model.payment.OrderPaymentOutboxMessage;
 import com.food.ordering.system.order.service.domain.ports.output.message.publisher.paymentApproval.PaymentRequestMessagePublisher;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;

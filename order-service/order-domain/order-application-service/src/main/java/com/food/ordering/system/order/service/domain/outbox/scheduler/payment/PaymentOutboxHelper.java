@@ -3,8 +3,8 @@ package com.food.ordering.system.order.service.domain.outbox.scheduler.payment;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.food.ordering.system.order.service.domain.exception.OrderDomainException;
-import com.food.ordering.system.order.service.domain.outbox.module.payment.OrderPaymentEventPayload;
-import com.food.ordering.system.order.service.domain.outbox.module.payment.OrderPaymentOutboxMessage;
+import com.food.ordering.system.order.service.domain.outbox.model.payment.OrderPaymentEventPayload;
+import com.food.ordering.system.order.service.domain.outbox.model.payment.OrderPaymentOutboxMessage;
 import com.food.ordering.system.order.service.domain.ports.output.repository.PaymentOutboxRepository;
 import com.food.ordering.system.domain.valueObject.OrderStatus;
 import lombok.extern.slf4j.Slf4j;
@@ -34,7 +34,8 @@ public class PaymentOutboxHelper {
     public Optional<List<OrderPaymentOutboxMessage>> getPaymentOutboxMessageByOutboxStatusAndSagaStatus(
             OutboxStatus outboxStatus, SagaStatus... sagaStatuses){
         return repository.findByTypeAndOutboxStatusAndSagaStatus(ORDER_SAGA_NAME,
-                outboxStatus,sagaStatuses);
+                outboxStatus,
+                sagaStatuses);
     }
 
     @Transactional(readOnly = true) //for only getting a data

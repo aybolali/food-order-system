@@ -12,9 +12,9 @@ import com.food.ordering.system.order.service.domain.entity.Restaurant;
 import com.food.ordering.system.order.service.domain.event.orderCancelledEvent;
 import com.food.ordering.system.order.service.domain.event.orderCreatedEvent;
 import com.food.ordering.system.order.service.domain.event.orderPaidEvent;
-import com.food.ordering.system.order.service.domain.outbox.module.approval.OrderApprovalEventPayload;
-import com.food.ordering.system.order.service.domain.outbox.module.approval.OrderApprovalEventProduct;
-import com.food.ordering.system.order.service.domain.outbox.module.payment.OrderPaymentEventPayload;
+import com.food.ordering.system.order.service.domain.outbox.model.approval.OrderApprovalEventPayload;
+import com.food.ordering.system.order.service.domain.outbox.model.approval.OrderApprovalEventProduct;
+import com.food.ordering.system.order.service.domain.outbox.model.payment.OrderPaymentEventPayload;
 import com.food.ordering.system.order.service.domain.valueObject.StreetAddress;
 import org.springframework.stereotype.Component;
 
@@ -38,7 +38,6 @@ public class OrderDataMapper {
         return Order.builder()
                 .customerID(new CustomerID(createOrderCommand.getCustomerId()))
                 .restaurantID(new RestaurantID(createOrderCommand.getRestaurantId()))
-                .price(new Money(createOrderCommand.getPrice()))
                 .deliveryAddress(orderAddressToStreetAddress(createOrderCommand.getAddress()))
                 .price(new Money(createOrderCommand.getPrice()))
                 .items(orderItemsToOrderEntities(createOrderCommand.getItems()))
@@ -73,7 +72,7 @@ public class OrderDataMapper {
 
     public OrderApprovalEventPayload orderPaidEventToOrderApprovalEventPayload(orderPaidEvent orderPaidEvent){
         return OrderApprovalEventPayload.builder()
-                .orderId(orderPaidEvent.getOrder().getId().toString())
+                .orderId(orderPaidEvent.getOrder().getId().getValue().toString())
                 .restaurantId(orderPaidEvent.getOrder().getRestaurantID().getValue().toString())
                 .restaurantOrderStatus(RestaurantOrderStatus.PAID.name())
                 .products(orderPaidEvent.getOrder().getItems().stream().map(orderItem ->
@@ -90,15 +89,15 @@ public class OrderDataMapper {
         return new StreetAddress(
                 UUID.randomUUID(),
                 address.getStreet(),
-                address.getCity(),
-                address.getPostalCode()
-        );
+                address.getPostalCode(),
+                address.getCity()
+                );
     }
 
     public OrderPaymentEventPayload orderCreatedEventToOrderPaymentEventPayload(orderCreatedEvent orderCreatedEvent){
         return OrderPaymentEventPayload.builder()
                 .customerId(orderCreatedEvent.getOrder().getCustomerID().getValue().toString())
-                .orderId(orderCreatedEvent.getOrder().getId().toString())
+                .orderId(orderCreatedEvent.getOrder().getId().getValue().toString())
                 .price(orderCreatedEvent.getOrder().getPrice().getAmount())
                 .createdAt(orderCreatedEvent.getCreatedAt())
                 .paymentOrderStatus(PaymentOrderStatus.PENDING.name())
@@ -108,7 +107,7 @@ public class OrderDataMapper {
     public OrderPaymentEventPayload orderCancelledEventToOrderPaymentEventPayload(orderCancelledEvent orderCancelledEvent){
         return OrderPaymentEventPayload.builder()
                 .customerId(orderCancelledEvent.getOrder().getCustomerID().getValue().toString())
-                .orderId(orderCancelledEvent.getOrder().getId().toString())
+                .orderId(orderCancelledEvent.getOrder().getId().getValue().toString())
                 .price(orderCancelledEvent.getOrder().getPrice().getAmount())
                 .createdAt(orderCancelledEvent.getCreatedAt())
                 .paymentOrderStatus(PaymentOrderStatus.CANCELLED.name())

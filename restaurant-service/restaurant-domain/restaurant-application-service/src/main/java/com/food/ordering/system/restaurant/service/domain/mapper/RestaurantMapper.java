@@ -21,7 +21,8 @@ public class RestaurantMapper {
     public Restaurant
     restaurantApprovalRequestToRestaurant(RestaurantApprovalRequest //po idei from request to entity
                                                                      restaurantApprovalRequest){
-        return Restaurant.builder()
+        return
+        Restaurant.builder()
                 .id(new RestaurantID(UUID.fromString(restaurantApprovalRequest.getRestaurantId())))
                 .orderDetail(OrderDetail.builder()
                         .id(new OrderId(UUID.fromString(restaurantApprovalRequest.getOrderId())))
@@ -40,7 +41,7 @@ public class RestaurantMapper {
     public OrderEventPayload
     orderApprovalEventToOrderEventPayload(OrderApprovalEvent orderApprovalEvent) {
         return OrderEventPayload.builder()
-                .orderId(orderApprovalEvent.getOrderApproval().getOrderId().toString())
+                .orderId(orderApprovalEvent.getOrderApproval().getOrderId().getValue().toString())
                 .restaurantId(orderApprovalEvent.getRestaurantId().getValue().toString())
                 .createdAt(orderApprovalEvent.getCreatedAt())
                 .orderApprovalStatus(orderApprovalEvent.getOrderApproval().getOrderApprovalStatus().name())

@@ -12,18 +12,17 @@ import java.util.UUID;
 @Getter
 @Setter
 @Builder
-@AllArgsConstructor //required to use (with) the builder pattern
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "orders")
-@Entity //JPA entity
+@Entity
 public class OrderEntity {
     @Id
     private UUID id;
-    private UUID restaurantId;
     private UUID customerId;
+    private UUID restaurantId;
     private UUID trackingId;
     private BigDecimal price;
-
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
     private String failureMessages;
@@ -38,14 +37,12 @@ public class OrderEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         OrderEntity that = (OrderEntity) o;
-
-        return Objects.equals(id, that.id);
+        return id.equals(that.id);
     }
 
     @Override
     public int hashCode() {
-        return id != null ? id.hashCode() : 0;
+        return Objects.hash(id);
     }
 }

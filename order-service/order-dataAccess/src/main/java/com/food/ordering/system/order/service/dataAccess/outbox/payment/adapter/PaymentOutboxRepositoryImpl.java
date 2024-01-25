@@ -4,7 +4,7 @@ package com.food.ordering.system.order.service.dataAccess.outbox.payment.adapter
 import com.food.ordering.system.order.service.dataAccess.outbox.payment.exception.PaymentOutboxNotFoundException;
 import com.food.ordering.system.order.service.dataAccess.outbox.payment.mapper.PaymentOutboxDataAccessMapper;
 import com.food.ordering.system.order.service.dataAccess.outbox.payment.repository.PaymentOutboxJpaRepository;
-import com.food.ordering.system.order.service.domain.outbox.module.payment.OrderPaymentOutboxMessage;
+import com.food.ordering.system.order.service.domain.outbox.model.payment.OrderPaymentOutboxMessage;
 import com.food.ordering.system.order.service.domain.ports.output.repository.PaymentOutboxRepository;
 import org.springframework.stereotype.Component;
 import outbox.OutboxStatus;

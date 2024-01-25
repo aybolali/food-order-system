@@ -10,32 +10,29 @@ import java.util.UUID;
 @Getter
 @Setter
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
-@IdClass(OrderItemEntityId.class) //creating a custom class to represent the composite primary key for your entity.
+@AllArgsConstructor
+@IdClass(OrderItemEntityId.class)
 @Table(name = "order_items")
 @Entity
 public class OrderItemEntity {
     @Id
     private Long id;
-
-    @Id //multi column primary key
+    @Id
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ORDER_ID")
-    private OrderEntity order; //for being unique of each item in a specific order
+    private OrderEntity order;
 
     private UUID productId;
-    private Integer quantity;
     private BigDecimal price;
+    private Integer quantity;
     private BigDecimal subTotal;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         OrderItemEntity that = (OrderItemEntity) o;
-
         return id.equals(that.id) && order.equals(that.order);
     }
 
@@ -43,5 +40,5 @@ public class OrderItemEntity {
     public int hashCode() {
         return Objects.hash(id, order);
     }
-
 }
+
