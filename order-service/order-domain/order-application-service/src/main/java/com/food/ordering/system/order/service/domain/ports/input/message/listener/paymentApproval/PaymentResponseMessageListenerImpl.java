@@ -28,6 +28,6 @@ public class PaymentResponseMessageListenerImpl implements PaymentResponseMessag
         orderPaymentSaga.rollback(paymentResponse);
         log.info("Order is roll backed for order id: {} with failure messages: {}",
                 paymentResponse.getOrderId(),
-                String.join(" ", paymentResponse.getFailureMessages()));
+                String.join(", ", paymentResponse.getFailureMessages()));
     }
 }

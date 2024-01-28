@@ -68,7 +68,7 @@ public class ApprovalOutboxHelper {
     public void saveApprovalOutboxMessage(OrderApprovalEventPayload payload,
                                           OrderStatus orderStatus, SagaStatus sagaStatus,
                                           OutboxStatus outboxStatus, UUID sagaId) {
-        approvalOutboxRepository.save(OrderApprovalOutboxMessage.builder()
+        save(OrderApprovalOutboxMessage.builder()
                         .id(UUID.randomUUID())
                         .sagaId(sagaId)
                         .createdAt(payload.getCreatedAt())

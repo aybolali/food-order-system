@@ -41,18 +41,18 @@
         {
             "name": "orderApprovalStatus",
             "type": {
-                  "type": "enum",
-                  "name": "OrderApprovalStatus",
-                  "symbols": ["APPROVED", "REJECTED"]
-               }
+                "type": "enum",
+                "name": "OrderApprovalStatus",
+                "symbols": ["APPROVED", "REJECTED"]
+            }
         },
         {
             "name": "failureMessages",
             "type": {
                 "type": "array",
                 "items":{
-                  "type":"string"
-               }
+                    "type":"string"
+                }
             }
         }
     ]
