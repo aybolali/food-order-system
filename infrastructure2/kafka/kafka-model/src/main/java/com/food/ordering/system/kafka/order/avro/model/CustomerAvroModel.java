@@ -17,13 +17,10 @@ public class CustomerAvroModel extends org.apache.avro.specific.SpecificRecordBa
   private static final long serialVersionUID = -861064569672548277L;
 
 
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"CustomerAvroModel\",\"namespace\":\"com.food.ordering.system.kafka.order.avro.model\",\"fields\":[{\"name\":\"id\",\"type\":{\"type\":\"string\",\"logicalType\":\"uuid\"}},{\"name\":\"username\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"firstName\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"lastName\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"CustomerAvroModel\",\"namespace\":\"com.food.ordering.system.kafka.order.avro.model\",\"fields\":[{\"name\":\"id\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"username\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"firstName\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"lastName\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static final SpecificData MODEL$ = new SpecificData();
-  static {
-    MODEL$.addLogicalTypeConversion(new org.apache.avro.Conversions.UUIDConversion());
-  }
 
   private static final BinaryMessageEncoder<CustomerAvroModel> ENCODER =
       new BinaryMessageEncoder<>(MODEL$, SCHEMA$);
@@ -76,7 +73,7 @@ public class CustomerAvroModel extends org.apache.avro.specific.SpecificRecordBa
     return DECODER.decode(b);
   }
 
-  private java.util.UUID id;
+  private java.lang.String id;
   private java.lang.String username;
   private java.lang.String firstName;
   private java.lang.String lastName;
@@ -95,7 +92,7 @@ public class CustomerAvroModel extends org.apache.avro.specific.SpecificRecordBa
    * @param firstName The new value for firstName
    * @param lastName The new value for lastName
    */
-  public CustomerAvroModel(java.util.UUID id, java.lang.String username, java.lang.String firstName, java.lang.String lastName) {
+  public CustomerAvroModel(java.lang.String id, java.lang.String username, java.lang.String firstName, java.lang.String lastName) {
     this.id = id;
     this.username = username;
     this.firstName = firstName;
@@ -120,26 +117,12 @@ public class CustomerAvroModel extends org.apache.avro.specific.SpecificRecordBa
     }
   }
 
-  private static final org.apache.avro.Conversion<?>[] conversions =
-      new org.apache.avro.Conversion<?>[] {
-      new org.apache.avro.Conversions.UUIDConversion(),
-      null,
-      null,
-      null,
-      null
-  };
-
-  @Override
-  public org.apache.avro.Conversion<?> getConversion(int field) {
-    return conversions[field];
-  }
-
   // Used by DatumReader.  Applications should not call.
   @Override
   @SuppressWarnings(value="unchecked")
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
-    case 0: id = (java.util.UUID)value$; break;
+    case 0: id = value$ != null ? value$.toString() : null; break;
     case 1: username = value$ != null ? value$.toString() : null; break;
     case 2: firstName = value$ != null ? value$.toString() : null; break;
     case 3: lastName = value$ != null ? value$.toString() : null; break;
@@ -151,7 +134,7 @@ public class CustomerAvroModel extends org.apache.avro.specific.SpecificRecordBa
    * Gets the value of the 'id' field.
    * @return The value of the 'id' field.
    */
-  public java.util.UUID getId() {
+  public java.lang.String getId() {
     return id;
   }
 
@@ -160,7 +143,7 @@ public class CustomerAvroModel extends org.apache.avro.specific.SpecificRecordBa
    * Sets the value of the 'id' field.
    * @param value the value to set.
    */
-  public void setId(java.util.UUID value) {
+  public void setId(java.lang.String value) {
     this.id = value;
   }
 
@@ -256,7 +239,7 @@ public class CustomerAvroModel extends org.apache.avro.specific.SpecificRecordBa
   public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<CustomerAvroModel>
     implements org.apache.avro.data.RecordBuilder<CustomerAvroModel> {
 
-    private java.util.UUID id;
+    private java.lang.String id;
     private java.lang.String username;
     private java.lang.String firstName;
     private java.lang.String lastName;
@@ -318,7 +301,7 @@ public class CustomerAvroModel extends org.apache.avro.specific.SpecificRecordBa
       * Gets the value of the 'id' field.
       * @return The value.
       */
-    public java.util.UUID getId() {
+    public java.lang.String getId() {
       return id;
     }
 
@@ -328,7 +311,7 @@ public class CustomerAvroModel extends org.apache.avro.specific.SpecificRecordBa
       * @param value The value of 'id'.
       * @return This builder.
       */
-    public com.food.ordering.system.kafka.order.avro.model.CustomerAvroModel.Builder setId(java.util.UUID value) {
+    public com.food.ordering.system.kafka.order.avro.model.CustomerAvroModel.Builder setId(java.lang.String value) {
       validate(fields()[0], value);
       this.id = value;
       fieldSetFlags()[0] = true;
@@ -479,7 +462,7 @@ public class CustomerAvroModel extends org.apache.avro.specific.SpecificRecordBa
     public CustomerAvroModel build() {
       try {
         CustomerAvroModel record = new CustomerAvroModel();
-        record.id = fieldSetFlags()[0] ? this.id : (java.util.UUID) defaultValue(fields()[0]);
+        record.id = fieldSetFlags()[0] ? this.id : (java.lang.String) defaultValue(fields()[0]);
         record.username = fieldSetFlags()[1] ? this.username : (java.lang.String) defaultValue(fields()[1]);
         record.firstName = fieldSetFlags()[2] ? this.firstName : (java.lang.String) defaultValue(fields()[2]);
         record.lastName = fieldSetFlags()[3] ? this.lastName : (java.lang.String) defaultValue(fields()[3]);
@@ -510,6 +493,59 @@ public class CustomerAvroModel extends org.apache.avro.specific.SpecificRecordBa
     READER$.read(this, SpecificData.getDecoder(in));
   }
 
+  @Override protected boolean hasCustomCoders() { return true; }
+
+  @Override public void customEncode(org.apache.avro.io.Encoder out)
+    throws java.io.IOException
+  {
+    out.writeString(this.id);
+
+    out.writeString(this.username);
+
+    out.writeString(this.firstName);
+
+    out.writeString(this.lastName);
+
+  }
+
+  @Override public void customDecode(org.apache.avro.io.ResolvingDecoder in)
+    throws java.io.IOException
+  {
+    org.apache.avro.Schema.Field[] fieldOrder = in.readFieldOrderIfDiff();
+    if (fieldOrder == null) {
+      this.id = in.readString();
+
+      this.username = in.readString();
+
+      this.firstName = in.readString();
+
+      this.lastName = in.readString();
+
+    } else {
+      for (int i = 0; i < 4; i++) {
+        switch (fieldOrder[i].pos()) {
+        case 0:
+          this.id = in.readString();
+          break;
+
+        case 1:
+          this.username = in.readString();
+          break;
+
+        case 2:
+          this.firstName = in.readString();
+          break;
+
+        case 3:
+          this.lastName = in.readString();
+          break;
+
+        default:
+          throw new java.io.IOException("Corrupt ResolvingDecoder.");
+        }
+      }
+    }
+  }
 }
 
 

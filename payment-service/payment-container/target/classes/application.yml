@@ -11,7 +11,6 @@ payment-service:
   outbox-scheduler-fixed-rate: 10000
   outbox-scheduler-initial-delay: 10000
 
-
 spring:
   jpa:
     open-in-view: false
@@ -26,12 +25,10 @@ spring:
     password: admin2003
     driver-class-name: org.postgresql.Driver
     platform: postgres
-    schema: init-schema.sql
-    initialization-mode: always
-    sql:
-      init:
-        mode: ALWAYS
-        schema-locations: classpath:init-schema.sql,classpath:init-data.sql
+  sql:
+    init:
+      mode: ALWAYS
+      schema-locations: classpath:init-schema.sql,classpath:init-data.sql
 
 kafka-config:
   bootstrap-servers: localhost:19092, localhost:29092, localhost:39092

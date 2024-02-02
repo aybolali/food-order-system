@@ -1,6 +1,7 @@
 package com.food.ordering.system.order.service.messaging.mapper;
 
 import com.food.ordering.system.kafka.order.avro.model.*;
+import com.food.ordering.system.order.service.domain.dto.message.CustomerModel;
 import com.food.ordering.system.order.service.domain.dto.message.PaymentResponse;
 import com.food.ordering.system.order.service.domain.dto.message.RestaurantApprovalResponse;
 import com.food.ordering.system.order.service.domain.outbox.model.approval.OrderApprovalEventPayload;
@@ -66,11 +67,11 @@ public class OrderMessagingDataMapper {
 */
     public PaymentResponse paymentResponseAvroModelToPaymentResponse(PaymentResponseAvroModel paymentResponseAvroModel){
         return PaymentResponse.builder()
-                .id(paymentResponseAvroModel.getId().toString())
-                .sagaId(paymentResponseAvroModel.getSagaId().toString())
-                .orderId(paymentResponseAvroModel.getOrderId().toString())
-                .paymentId(paymentResponseAvroModel.getPaymentId().toString())
-                .customerId(paymentResponseAvroModel.getCustomerId().toString())
+                .id(paymentResponseAvroModel.getId())
+                .sagaId(paymentResponseAvroModel.getSagaId())
+                .orderId(paymentResponseAvroModel.getOrderId())
+                .paymentId(paymentResponseAvroModel.getPaymentId())
+                .customerId(paymentResponseAvroModel.getCustomerId())
                 .price(paymentResponseAvroModel.getPrice())
                 .createdAt(paymentResponseAvroModel.getCreatedAt())
                 .paymentStatus(PaymentStatus.valueOf(paymentResponseAvroModel.getPaymentStatus().name()))
@@ -80,10 +81,10 @@ public class OrderMessagingDataMapper {
 
     public RestaurantApprovalResponse restaurantApprovalResponseAvroModelToRestaurantApprovalResponse(RestaurantApprovalResponseAvroModel model){
         return RestaurantApprovalResponse.builder()
-                .id(model.getId().toString())
-                .sagaId(model.getSagaId().toString())
-                .orderId(model.getOrderId().toString())
-                .restaurantId(model.getRestaurantId().toString())
+                .id(model.getId())
+                .sagaId(model.getSagaId())
+                .orderId(model.getOrderId())
+                .restaurantId(model.getRestaurantId())
                 .createdAt(model.getCreatedAt())
                 .orderApprovalStatus(OrderApprovalStatus.valueOf(model.getOrderApprovalStatus().toString()))
                 .failureMessages(model.getFailureMessages())
@@ -93,10 +94,10 @@ public class OrderMessagingDataMapper {
     public PaymentRequestAvroModel orderPaymentEventToPaymentRequestAvroModel(String sagaId, OrderPaymentEventPayload
             orderPaymentEventPayload) {
         return PaymentRequestAvroModel.newBuilder()
-                .setId(UUID.randomUUID())
-                .setSagaId(UUID.fromString(sagaId))
-                .setCustomerId(UUID.fromString(orderPaymentEventPayload.getCustomerId()))
-                .setOrderId(UUID.fromString(orderPaymentEventPayload.getOrderId()))
+                .setId(UUID.randomUUID().toString())
+                .setSagaId(sagaId)
+                .setCustomerId(orderPaymentEventPayload.getCustomerId())
+                .setOrderId(orderPaymentEventPayload.getOrderId())
                 .setPrice(orderPaymentEventPayload.getPrice())
                 .setCreatedAt(orderPaymentEventPayload.getCreatedAt().toInstant())
                 .setPaymentOrderStatus(PaymentOrderStatus.valueOf(orderPaymentEventPayload.getPaymentOrderStatus()))
@@ -107,10 +108,10 @@ public class OrderMessagingDataMapper {
     orderApprovalEventToRestaurantApprovalRequestAvroModel(String sagaId, OrderApprovalEventPayload
             orderApprovalEventPayload) {
         return RestaurantApprovalRequestAvroModel.newBuilder()
-                .setId(UUID.randomUUID())
-                .setSagaId(UUID.fromString(sagaId))
-                .setOrderId(UUID.fromString(orderApprovalEventPayload.getOrderId()))
-                .setRestaurantId(UUID.fromString(orderApprovalEventPayload.getRestaurantId()))
+                .setId(UUID.randomUUID().toString())
+                .setSagaId(sagaId)
+                .setOrderId(orderApprovalEventPayload.getOrderId())
+                .setRestaurantId(orderApprovalEventPayload.getRestaurantId())
                 .setRestaurantOrderStatus(RestaurantOrderStatus
                         .valueOf(orderApprovalEventPayload.getRestaurantOrderStatus()))
                 .setProducts(orderApprovalEventPayload.getProducts().stream().map(orderApprovalEventProduct ->
@@ -120,6 +121,14 @@ public class OrderMessagingDataMapper {
                                 .build()).collect(Collectors.toList()))
                 .setPrice(orderApprovalEventPayload.getPrice())
                 .setCreatedAt(orderApprovalEventPayload.getCreatedAt().toInstant())
+                .build();
+    }
+    public CustomerModel customerAvroModelToCustomerModel(CustomerAvroModel customerAvroModel) {
+        return CustomerModel.builder()
+                .id(customerAvroModel.getId())
+                .username(customerAvroModel.getUsername())
+                .firstname(customerAvroModel.getFirstName())
+                .lastname(customerAvroModel.getLastName())
                 .build();
     }
 }

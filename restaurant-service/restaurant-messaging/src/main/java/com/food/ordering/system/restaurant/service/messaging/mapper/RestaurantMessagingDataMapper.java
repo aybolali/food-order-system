@@ -47,10 +47,10 @@ public class RestaurantMessagingDataMapper {
     restaurantApprovalRequestAvroModelToRestaurantApproval(RestaurantApprovalRequestAvroModel
                                                                    restaurantApprovalRequestAvroModel) {
         return RestaurantApprovalRequest.builder()
-                .id(restaurantApprovalRequestAvroModel.getId().toString())
-                .sagaId(restaurantApprovalRequestAvroModel.getSagaId().toString())
-                .restaurantId(restaurantApprovalRequestAvroModel.getRestaurantId().toString())
-                .orderId(restaurantApprovalRequestAvroModel.getOrderId().toString())
+                .id(restaurantApprovalRequestAvroModel.getId())
+                .sagaId(restaurantApprovalRequestAvroModel.getSagaId())
+                .restaurantId(restaurantApprovalRequestAvroModel.getRestaurantId())
+                .orderId(restaurantApprovalRequestAvroModel.getOrderId())
                 .restaurantOrderStatus(RestaurantOrderStatus.valueOf(restaurantApprovalRequestAvroModel
                         .getRestaurantOrderStatus().name()))
                 .products(restaurantApprovalRequestAvroModel.getProducts()
@@ -67,10 +67,10 @@ public class RestaurantMessagingDataMapper {
 
     public RestaurantApprovalResponseAvroModel orderEventPayloadToRestaurantApprovalResponseAvroModel(String sagaId, OrderEventPayload orderEventPayload) {
         return RestaurantApprovalResponseAvroModel.newBuilder()
-                .setId(UUID.randomUUID())
-                .setSagaId(UUID.fromString(sagaId))
-                .setOrderId(UUID.fromString(orderEventPayload.getOrderId()))
-                .setRestaurantId(UUID.fromString(orderEventPayload.getRestaurantId()))
+                .setId(UUID.randomUUID().toString())
+                .setSagaId(sagaId)
+                .setOrderId(orderEventPayload.getOrderId())
+                .setRestaurantId(orderEventPayload.getRestaurantId())
                 .setCreatedAt(orderEventPayload.getCreatedAt().toInstant())
                 .setOrderApprovalStatus(OrderApprovalStatus.valueOf(orderEventPayload.getOrderApprovalStatus()))
                 .setFailureMessages(orderEventPayload.getFailureMessages())

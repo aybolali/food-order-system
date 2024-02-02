@@ -16,7 +16,7 @@ public class Restaurant extends AggregateRoot<RestaurantID> {
     private final OrderDetail orderDetail;
     private Restaurant(Builder builder) {
         setId(builder.id);
-        orderApproval = builder.orderApprovalID;
+        orderApproval = builder.orderApproval;
         active = builder.active;
         orderDetail = builder.orderDetail;
     }
@@ -39,9 +39,9 @@ public class Restaurant extends AggregateRoot<RestaurantID> {
     public void constructOrderApproval(OrderApprovalStatus status){
         this.orderApproval = OrderApproval.builder()
                 .id(new OrderApprovalId(UUID.randomUUID()))
-                .orderId(this.orderApproval.getOrderId())
+                .orderId(this.getOrderDetail().getId())
                 .restaurantID(this.getId())
-                .orderApprovalStatus(orderApproval.getOrderApprovalStatus())
+                .orderApprovalStatus(status)
                 .build();
     }
 
@@ -68,7 +68,7 @@ public class Restaurant extends AggregateRoot<RestaurantID> {
 
     public static final class Builder {
         private RestaurantID id;
-        private OrderApproval orderApprovalID;
+        private OrderApproval orderApproval;
         private boolean active;
 
         private OrderDetail orderDetail;
@@ -81,8 +81,8 @@ public class Restaurant extends AggregateRoot<RestaurantID> {
             return this;
         }
 
-        public Builder orderApprovalID(OrderApproval val) {
-            orderApprovalID = val;
+        public Builder orderApproval(OrderApproval val) {
+            orderApproval = val;
             return this;
         }
 

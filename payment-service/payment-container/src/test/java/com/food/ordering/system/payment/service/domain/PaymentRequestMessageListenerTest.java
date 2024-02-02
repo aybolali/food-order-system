@@ -1,11 +1,10 @@
 package com.food.ordering.system.payment.service.domain;
 
+import com.food.ordering.system.domain.valueObject.PaymentStatus;
 import com.food.ordering.system.payment.service.dataaccess.outbox.entity.OrderOutboxEntity;
 import com.food.ordering.system.payment.service.dataaccess.outbox.repository.OrderOutboxJpaRepository;
 import com.food.ordering.system.payment.service.domain.dto.PaymentRequest;
 import com.food.ordering.system.payment.service.domain.ports.input.message.listener.PaymentRequestMessageListener;
-import com.food.ordering.system.domain.valueObject.PaymentOrderStatus;
-import com.food.ordering.system.domain.valueObject.PaymentStatus;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.postgresql.util.PSQLException;
@@ -41,7 +40,7 @@ public class PaymentRequestMessageListenerTest {
     @Test
     void testDoublePayment() {
         String sagaId = UUID.randomUUID().toString();
-        paymentRequestMessageListener.completePayment(getPaymentRequest(sagaId)); //outbox status completed after completing
+        paymentRequestMessageListener.completePayment(getPaymentRequest(sagaId));
         try {
             paymentRequestMessageListener.completePayment(getPaymentRequest(sagaId));
         } catch (DataAccessException e) {
@@ -105,7 +104,7 @@ public class PaymentRequestMessageListenerTest {
                 .id(UUID.randomUUID().toString())
                 .sagaId(sagaId)
                 .orderId(UUID.randomUUID().toString())
-                .paymentOrderStatus(PaymentOrderStatus.PENDING)
+                .paymentOrderStatus(com.food.ordering.system.domain.valueObject.PaymentOrderStatus.PENDING)
                 .customerId(CUSTOMER_ID)
                 .price(PRICE)
                 .createdAt(Instant.now())
