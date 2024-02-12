@@ -1,5 +1,4 @@
 package com.food.ordering.system.domain.entity;
-
 import com.food.ordering.system.domain.valueObject.CreditEntryId;
 import com.food.ordering.system.domain.valueObject.CustomerID;
 import com.food.ordering.system.domain.valueObject.Money;
@@ -16,7 +15,7 @@ public class CreditEntry extends BaseEntity<CreditEntryId> {
         totalCreditAmount = totalCreditAmount.substract(amount);
     }
     private CreditEntry(Builder builder) {
-        super.setId(builder.creditEntryId);
+        setId(builder.creditEntryId);
         customerID = builder.customerID;
         totalCreditAmount = builder.totalCreditAmount;
     }
@@ -39,10 +38,6 @@ public class CreditEntry extends BaseEntity<CreditEntryId> {
         private Money totalCreditAmount;
 
         private Builder() {
-        }
-
-        public static Builder builder() {
-            return new Builder();
         }
 
         public Builder id(CreditEntryId val) {

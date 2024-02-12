@@ -37,7 +37,13 @@ public class PaymentRequestHelper {
     private final OrderOutboxPaymentHelper orderOutboxPaymentHelper;
     private final PaymentResponseMessagePublisher paymentResponseMessagePublisher;
 
-    public PaymentRequestHelper(PaymentDomainService paymentDomainService, PaymentDataMapper paymentDataMapper, PaymentRepository paymentRepository, CreditEntryRepository creditEntryRepository, CreditHistoryRepository creditHistoryRepository, OrderOutboxPaymentHelper orderOutboxPaymentHelper, PaymentResponseMessagePublisher paymentResponseMessagePublisher) {
+    public PaymentRequestHelper(PaymentDomainService paymentDomainService,
+                                PaymentDataMapper paymentDataMapper,
+                                PaymentRepository paymentRepository,
+                                CreditEntryRepository creditEntryRepository,
+                                CreditHistoryRepository creditHistoryRepository,
+                                OrderOutboxPaymentHelper orderOutboxPaymentHelper,
+                                PaymentResponseMessagePublisher paymentResponseMessagePublisher) {
         this.paymentDomainService = paymentDomainService;
         this.paymentDataMapper = paymentDataMapper;
         this.paymentRepository = paymentRepository;

@@ -11,7 +11,7 @@ public class CreditHistory extends BaseEntity<CreditHistoryId> {//not aggregate 
     private final TransactionType transactionType;
 
     private CreditHistory(Builder builder) {
-        super.setId(builder.creditHistoryId);
+        setId(builder.creditHistoryId);
         customerID = builder.customerID;
         amount = builder.amount;
         transactionType = builder.transactionType;
@@ -53,11 +53,6 @@ public class CreditHistory extends BaseEntity<CreditHistoryId> {//not aggregate 
             customerID = val;
             return this;
         }
-        public Builder id(CreditHistoryId val) {
-            creditHistoryId = val;
-            return this;
-        }
-
         public Builder amount(Money val) {
             amount = val;
             return this;

@@ -13,6 +13,32 @@ import java.util.UUID;
 
 @Component
 public class PaymentMessagingDataMapper {
+    public PaymentRequest paymentRequestAvroModelToPaymentRequest(PaymentRequestAvroModel paymentRequestAvroModel){
+        return PaymentRequest.builder()
+                .id(paymentRequestAvroModel.getId())
+                .sagaId(paymentRequestAvroModel.getSagaId())
+                .customerId(paymentRequestAvroModel.getCustomerId())
+                .orderId(paymentRequestAvroModel.getOrderId())
+                .price(paymentRequestAvroModel.getPrice())
+                .createdAt(paymentRequestAvroModel.getCreatedAt())
+                .paymentOrderStatus(PaymentOrderStatus.valueOf(paymentRequestAvroModel.getPaymentOrderStatus().name()))
+                .build();
+    }
+
+    public PaymentResponseAvroModel orderEventPayloadToPaymentResponseAvroModel(String sagaId,
+                                                                                OrderEventPayload orderEventPayload) {
+        return PaymentResponseAvroModel.newBuilder()
+                .setId(UUID.randomUUID().toString())
+                .setSagaId(sagaId)
+                .setPaymentId(orderEventPayload.getPaymentId())
+                .setCustomerId(orderEventPayload.getCustomerId())
+                .setOrderId(orderEventPayload.getOrderId())
+                .setPrice(orderEventPayload.getPrice())
+                .setCreatedAt(orderEventPayload.getCreatedAt().toInstant())
+                .setPaymentStatus(PaymentStatus.valueOf(orderEventPayload.getPaymentStatus()))
+                .setFailureMessages(orderEventPayload.getFailureMessages())
+                .build();
+    }
    /* public PaymentResponseAvroModel
     paymentCompletedEventToPaymentResponseAvroModel(PaymentCompletedEvent paymentCompletedEvent){
         return PaymentResponseAvroModel.newBuilder()
@@ -58,30 +84,4 @@ public class PaymentMessagingDataMapper {
                 .build();
     }
 */
-    public PaymentRequest paymentRequestAvroModelToPaymentRequest(PaymentRequestAvroModel paymentRequestAvroModel){
-        return PaymentRequest.builder()
-                .id(paymentRequestAvroModel.getId())
-                .sagaId(paymentRequestAvroModel.getSagaId())
-                .customerId(paymentRequestAvroModel.getCustomerId())
-                .orderId(paymentRequestAvroModel.getOrderId())
-                .price(paymentRequestAvroModel.getPrice())
-                .createdAt(paymentRequestAvroModel.getCreatedAt())
-                .paymentOrderStatus(PaymentOrderStatus.valueOf(paymentRequestAvroModel.getPaymentOrderStatus().name()))
-                .build();
-    }
-
-    public PaymentResponseAvroModel orderEventPayloadToPaymentResponseAvroModel(String sagaId,
-                                                                                OrderEventPayload orderEventPayload) {
-        return PaymentResponseAvroModel.newBuilder()
-                .setId(UUID.randomUUID().toString())
-                .setSagaId(sagaId)
-                .setPaymentId(orderEventPayload.getPaymentId())
-                .setCustomerId(orderEventPayload.getCustomerId())
-                .setOrderId(orderEventPayload.getOrderId())
-                .setPrice(orderEventPayload.getPrice())
-                .setCreatedAt(orderEventPayload.getCreatedAt().toInstant())
-                .setPaymentStatus(PaymentStatus.valueOf(orderEventPayload.getPaymentStatus()))
-                .setFailureMessages(orderEventPayload.getFailureMessages())
-                .build();
-    }
 }

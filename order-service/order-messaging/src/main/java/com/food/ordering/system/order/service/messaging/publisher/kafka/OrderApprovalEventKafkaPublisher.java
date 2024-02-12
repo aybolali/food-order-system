@@ -32,7 +32,9 @@ public class OrderApprovalEventKafkaPublisher implements RestaurantApprovalReque
         this.kafkaMessageHelper = kafkaMessageHelper;
     }
     @Override
-    public void publish(OrderApprovalOutboxMessage orderApprovalOutboxMessage, BiConsumer<OrderApprovalOutboxMessage, OutboxStatus> outboxCallback) {
+    public void publish(OrderApprovalOutboxMessage orderApprovalOutboxMessage,
+                        BiConsumer<OrderApprovalOutboxMessage,
+            OutboxStatus> outboxCallback) {
         OrderApprovalEventPayload orderApprovalEventPayload =
                 kafkaMessageHelper.getOrderEventPayload(orderApprovalOutboxMessage.getPayload(),
                         OrderApprovalEventPayload.class);

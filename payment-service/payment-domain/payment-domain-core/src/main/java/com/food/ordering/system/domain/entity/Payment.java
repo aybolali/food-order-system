@@ -31,7 +31,7 @@ public class Payment extends AggregateRoot<PaymentID> {
         return new Builder();
     }
     public void initializePayment(){
-        super.setId(new PaymentID(UUID.randomUUID()));
+        setId(new PaymentID(UUID.randomUUID()));
         createdAt = ZonedDateTime.now(ZoneId.of("UTC"));
     }
 

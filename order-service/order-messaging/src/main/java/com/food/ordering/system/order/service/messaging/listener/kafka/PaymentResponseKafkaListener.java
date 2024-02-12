@@ -22,7 +22,8 @@ public class PaymentResponseKafkaListener implements KafkaConsumer<PaymentRespon
     private final OrderMessagingDataMapper orderMessagingDataMapper;
     private final PaymentResponseMessageListener paymentResponseMessageListener;
 
-    public PaymentResponseKafkaListener(OrderMessagingDataMapper orderMessagingDataMapper, PaymentResponseMessageListener paymentResponseMessageListener) {
+    public PaymentResponseKafkaListener(OrderMessagingDataMapper orderMessagingDataMapper,
+                                        PaymentResponseMessageListener paymentResponseMessageListener) {
         this.orderMessagingDataMapper = orderMessagingDataMapper;
         this.paymentResponseMessageListener = paymentResponseMessageListener;
     }

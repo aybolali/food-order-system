@@ -84,7 +84,9 @@ public class PaymentDomainServiceImpl implements PaymentDomainService{
                 .build());
     }
 
-    private void validateCreditHistory(List<CreditHistory> creditHistories, CreditEntry creditEntry, List<String> failureMessages) {
+    private void validateCreditHistory(List<CreditHistory> creditHistories,
+                                       CreditEntry creditEntry,
+                                       List<String> failureMessages) {
         Money totalCreditHistory = getTotalHistoryAmount(creditHistories, TransactionType.CREDIT);
         Money totalDebitHistory = getTotalHistoryAmount(creditHistories, TransactionType.DEBIT);
 
